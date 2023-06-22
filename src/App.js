@@ -1,26 +1,29 @@
-import "./App.css";
-import Signup from "./componments/Signup";
-
-import React, { useEffect, useState } from "react";
-
-import {getDocs, collection, doc} from 'firebase/firestone';
-import { db } from '../firebase-config';
-
-const [getTaskList, setTaskList] = useState([]);
-  const jobCollectionRef = collection(db, "tasks");
-
-  useEffect(()=>{
-    const getTasks = async () => {
-      const data = await getDocs(jobCollectionRef);
-      setTaskList(data.docs.map((docs) => ({...doc.data(), id: doc.id})));
-    }
-    getTasks();
-  },[])
+import React from "react";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import Account from "./components/Account";
+import { Route, Routes } from "react-router-dom";
+import { AuthContextProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <div className="App">
-      <Signup />
+    <div>
+      <h1 className="text-center text-3xl font-bold">frontend eindopdracht</h1>
+      <AuthContextProvider>
+        <Routes>
+          <Route path="/" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthContextProvider>
     </div>
   );
 }
