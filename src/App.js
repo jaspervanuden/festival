@@ -1,6 +1,7 @@
 import React from "react";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import UserList from "./components/UserList";
 import Account from "./components/Account";
 import { Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
@@ -9,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <div>
+      <UserList />
       <h1 className="text-center text-3xl font-bold">frontend eindopdracht</h1>
       <AuthContextProvider>
         <Routes>
