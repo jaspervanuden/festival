@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from 'firebase';
 import "firebase/database";
-import firebaseConfig from "./firebaseConfig";
+import firebaseConfig from "./firebaseConfig";  
 
 // Initialiseer Firebase met de configuratiegegevens
 firebase.initializeApp(firebaseConfig);
